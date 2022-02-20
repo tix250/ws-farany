@@ -7,11 +7,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import eni.entities.Region;
 import eni.entities.Signalement;
 import eni.entities.UtilisateurBO;
+import eni.repository.MikaRepository;
+import eni.repository.SignalementRepository;
 
 
 @Service
@@ -19,6 +22,10 @@ public class MikaImpl implements MikaInterface{
 	
 	@PersistenceContext
 	private EntityManager em;
+	
+	@Autowired
+	private MikaRepository  mr;
+	
 	@Override
 	public UtilisateurBO connexion(String login, String mdp) {
 			
@@ -129,7 +136,7 @@ public class MikaImpl implements MikaInterface{
 
 	@Override
 	public void insertUserBo(UtilisateurBO u) {
-		em.persist(u);	
+		mr.save(u);
 	}
 
 

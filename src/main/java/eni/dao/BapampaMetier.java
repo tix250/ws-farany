@@ -7,12 +7,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import eni.entities.Region;
 import eni.entities.Signalement;
 import eni.entities.UtilisateurFO;
 import eni.entities.UtilisateurMobile;
+import eni.repository.BapampaRepository;
+import eni.repository.MikaRepository;
 
 
 
@@ -21,6 +24,9 @@ public class BapampaMetier implements BapampaInterface{
 	
 	@PersistenceContext
 	private EntityManager em;
+	
+	@Autowired
+	private BapampaRepository  br;
 	
 	@Override
 	public UtilisateurFO connexionFO (String login ,String mdp ) {
@@ -74,7 +80,7 @@ public class BapampaMetier implements BapampaInterface{
 
 	@Override
 	public void insertUserFo(UtilisateurFO u) {
-		em.persist(u);
+		br.save(u);
 	}
 	
 	
