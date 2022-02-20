@@ -10,6 +10,7 @@ import eni.entities.UtilisateurBO;
 
 public interface MikaInterface {
 	public UtilisateurBO connexion(String login , String mdp );
+	public void insertUserBo(UtilisateurBO u );
 	public List<Region> listeRegion();
 	public List<Signalement> listeSignalement();
 	public void affecterSignalement(Signalement s);

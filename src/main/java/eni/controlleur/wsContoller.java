@@ -19,9 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import eni.dao.BapampaInterface;
+import eni.dao.MikaImpl;
+import eni.dao.MikaInterface;
 import eni.dao.TixInterface;
 import eni.entities.Region;
 import eni.entities.Signalement;
+import eni.entities.UserBackoffice;
+import eni.entities.UtilisateurBO;
 import eni.entities.UtilisateurFO;
 import eni.entities.UtilisateurMobile;
 import eni.repository.UserRepository;
@@ -31,6 +35,9 @@ public class wsContoller {
 	
 	 @Autowired
 	 private  TixInterface tixInterface;
+	 
+	 @Autowired
+	 private  MikaInterface mikaInterface;
 	 
 	 @Autowired
 	 private UserRepository userRepository;
@@ -101,7 +108,7 @@ public class wsContoller {
 		 return null;
 	 }
 	 
-	 @RequestMapping(value="/inscription",method=RequestMethod.POST)
+	 @RequestMapping(value="/inscriptionMobile",method=RequestMethod.POST)
 	 public String inscription (@RequestBody UtilisateurMobile umobile )
 	 {
 		 if(tixInterface.InscriptionMobile(umobile))
@@ -109,6 +116,20 @@ public class wsContoller {
 			 return "inscriction avec succee";
 		 }
 		return "desole le mot de passe est incorrect";
+	 }
+	 
+	 @RequestMapping(value="/inscriptionBo",method=RequestMethod.POST)
+	 public boolean inscription (@RequestBody UtilisateurBO u )
+	 {
+		 mikaInterface.insertUserBo(u);
+		 return true;
+	 }
+	 
+	 @RequestMapping(value="/inscriptionFO",method=RequestMethod.POST)
+	 public boolean inscription (@RequestBody UtilisateurFO u )
+	 {
+		 bapampaInterface.insertUserFo(u);
+		 return true;
 	 }
 	 
 	 @Value("${file.upload-dir}")

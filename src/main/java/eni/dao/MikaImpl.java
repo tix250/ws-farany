@@ -127,5 +127,10 @@ public class MikaImpl implements MikaInterface{
 		return type;
 	}
 
+	@Override
+	public void insertUserBo(UtilisateurBO u) {
+		em.persist(u);	
+	}
+
 
 }

@@ -71,6 +71,11 @@ public class BapampaMetier implements BapampaInterface{
 		if (user == null) throw new RuntimeException("compte introuvable");
 		return user;
 	}
+
+	@Override
+	public void insertUserFo(UtilisateurFO u) {
+		em.persist(u);
+	}
 	
 	
 }
