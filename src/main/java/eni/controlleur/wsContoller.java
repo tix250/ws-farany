@@ -84,7 +84,7 @@ public class wsContoller {
 		return tixInterface.loginMobile(nom , mdp);
 	}
 	 
-	 @RequestMapping(value="/loginBo",method=RequestMethod.POST)
+	 @RequestMapping(value="/loginMobile",method=RequestMethod.POST)
 	 public UtilisateurMobile loginBO (@RequestBody UtilisateurMobile umobile )
 	 {
 		 UtilisateurMobile err = new UtilisateurMobile();
@@ -94,6 +94,17 @@ public class wsContoller {
 			 return tixInterface.loginMobile(umobile.getNom(), umobile.getMdp());
 		 }
 		 return err;
+	 }
+	 
+	 @RequestMapping(value="/loginBo",method=RequestMethod.POST)
+	 public UtilisateurBO loginBO (@RequestBody UtilisateurBO u )
+	 {
+		if(mikaInterface.connexion(u.getLogin(), u.getMdp()).getIdBO() != 0)
+		{
+			return mikaInterface.connexion(u.getLogin(), u.getMdp());
+		}
+		else
+			return null;
 	 }
 	 
 	 @RequestMapping(value="/loginFo",method=RequestMethod.POST)
