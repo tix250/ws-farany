@@ -132,12 +132,10 @@ public class wsContoller {
 		 return null;
 	 }
 	 
-	 @RequestMapping(value="/affecterSalement",method=RequestMethod.POST)
-	 public boolean affecterSalement (@RequestBody int idRegion , @RequestBody int idSignalement )
+	 @RequestMapping(value="/affecterSignalement",method=RequestMethod.POST)
+	 public boolean affecterSignalement (@RequestBody  Signalement s )
 	 {
-		 Signalement s = new Signalement();
-		 s.setId_region(idRegion);
-		 s.setId_signalement(idSignalement);
+		 
 		 mikaInterface.affecterSignalement(s);
 		 return true;
 	 }
