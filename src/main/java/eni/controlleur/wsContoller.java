@@ -132,6 +132,16 @@ public class wsContoller {
 		 return null;
 	 }
 	 
+	 @RequestMapping(value="/affecterSalement",method=RequestMethod.POST)
+	 public boolean affecterSalement (@RequestBody int idRegion , @RequestBody int idSignalement )
+	 {
+		 Signalement s = new Signalement();
+		 s.setId_region(idRegion);
+		 s.setId_signalement(idSignalement);
+		 mikaInterface.affecterSignalement(s);
+		 return true;
+	 }
+	 
 	 @RequestMapping(value="/inscriptionMobile",method=RequestMethod.POST)
 	 public String inscription (@RequestBody UtilisateurMobile umobile )
 	 {
