@@ -9,15 +9,14 @@ import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import eni.entities.Region;
 import eni.entities.Signalement;
 import eni.entities.UtilisateurBO;
-import eni.entities.UtilisateurMobile;
 import eni.repository.MikaRepository;
-import eni.repository.SignalementRepository;
 
-
+@Transactional
 @Service
 public class MikaImpl implements MikaInterface{
 	
@@ -50,7 +49,7 @@ public class MikaImpl implements MikaInterface{
 	
 	@Override
 	public void affecterSignalement(Signalement s) {
-		Signalement ssd = new Signalement();
+		Signalement ssd = null;
 		try {
 			Query req = em.createQuery("FROM Signalement where id_signalement = " + s.getId_signalement() )  ;
 			ssd = (Signalement) req.getSingleResult();
@@ -59,8 +58,11 @@ public class MikaImpl implements MikaInterface{
 			e.printStackTrace();		
 		}
 		
-		ssd.setId_region(s.getId_region());
-		em.merge(ssd);
+		if(ssd != null)
+		{
+			ssd.setId_region(s.getId_region());
+			em.merge(ssd);
+		}
 	}
 	@SuppressWarnings("unchecked")
 	@Override
