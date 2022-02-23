@@ -3,6 +3,7 @@ package eni.dao;
 import java.util.ArrayList;
 
 import eni.entities.Signalement;
+import eni.entities.StatSignialement;
 import eni.entities.UtilisateurMobile;
 
 
@@ -12,4 +13,5 @@ public interface TixInterface {
 	public boolean insererSignalement(Signalement s);
 	public ArrayList<UtilisateurMobile> getAllUserMobile();
 	public ArrayList<Signalement> recupererToutSignialement();
+	public ArrayList<StatSignialement> donnerStatRegionSignialement();
 }

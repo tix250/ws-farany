@@ -24,6 +24,7 @@ import eni.dao.MikaInterface;
 import eni.dao.TixInterface;
 import eni.entities.Region;
 import eni.entities.Signalement;
+import eni.entities.StatSignialement;
 import eni.entities.UserBackoffice;
 import eni.entities.UtilisateurBO;
 import eni.entities.UtilisateurFO;
@@ -57,6 +58,12 @@ public class wsContoller {
 		 return  (ArrayList<Signalement>) bapampaInterface.ListSignalementRegion(id);
 	 }
 	 
+	 @RequestMapping(value="/donnerStatRegionSignialement",method=RequestMethod.GET)
+	 public ArrayList<StatSignialement> donnerStatRegionSignialement()
+	 {
+		 return  (ArrayList<StatSignialement>) tixInterface.donnerStatRegionSignialement();
+	 }
+	 
 	 @RequestMapping(value="/findRegion/{id}",method=RequestMethod.GET)
 	 public Region findRegion(@PathVariable int id)
 	 {
@@ -73,6 +80,12 @@ public class wsContoller {
 	 public ArrayList<Signalement> ListSignalementRegion()
 	 {
 		 return  tixInterface.recupererToutSignialement();
+	 }
+	 
+	 @RequestMapping(value="/signialementNonAffecter",method=RequestMethod.GET)
+	 public ArrayList<Signalement> signialementNonAffecter()
+	 {
+		 return  (ArrayList<Signalement>) mikaInterface.listeSignalement();
 	 }
 	 
 	@RequestMapping(value="/login/{nom}/{mdp}",method=RequestMethod.GET)
@@ -167,6 +180,7 @@ public class wsContoller {
 		 s.setId_user(Integer.valueOf(id_user));
 		 s.setId_type_signalement(Integer.valueOf(id_type_signalement));
 		 s.setPhoto(FILE_DIRECTORY+file.getOriginalFilename());
+		 s.setId_region(0);
 		 
 		 tixInterface.insererSignalement(s);
 		 
