@@ -69,7 +69,7 @@ public class MikaImpl implements MikaInterface{
 		List<Signalement> resultat = new ArrayList<>();
 		try {
 			
-			Query req = em.createQuery("select s from Signalement s id_region = 0" )  ;
+			Query req = em.createQuery("select s from Signalement s where id_region = 0" )  ;
 			resultat = req.getResultList();
 			
 			if (resultat== null) throw new RuntimeException("Tsy misy signalement");
