@@ -2,6 +2,7 @@ package eni.dao;
 
 import java.util.ArrayList;
 
+import eni.entities.Region;
 import eni.entities.Signalement;
 import eni.entities.StatSignialement;
 import eni.entities.UtilisateurMobile;
@@ -14,4 +15,5 @@ public interface TixInterface {
 	public ArrayList<UtilisateurMobile> getAllUserMobile();
 	public ArrayList<Signalement> recupererToutSignialement();
 	public ArrayList<StatSignialement> donnerStatRegionSignialement();
+	public ArrayList<Region> findAllRegion();
 }

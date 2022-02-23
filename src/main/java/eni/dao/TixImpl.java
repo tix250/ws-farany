@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import eni.entities.Region;
 import eni.entities.Signalement;
 import eni.entities.StatSignialement;
 import eni.entities.UtilisateurMobile;
@@ -111,6 +112,23 @@ public class TixImpl implements TixInterface {
 		}
 		
 		return retour;
+	}
+
+	@Override
+	public ArrayList<Region> findAllRegion() {UtilisateurMobile um = new UtilisateurMobile();
+	ArrayList<Region>  regionLsit = new ArrayList<>();
+	try 
+	{
+		Query  req = em.createQuery("SELECT * FORM Region");
+		regionLsit = (ArrayList<Region>) req.getResultList();
+	} catch (Exception e) 
+	{
+		if(regionLsit == null )
+		{
+			throw new RuntimeException("region introuvable");
+		}
+	}
+		return regionLsit;
 	}
 	
 }

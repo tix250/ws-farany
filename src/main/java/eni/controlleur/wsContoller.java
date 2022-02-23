@@ -76,6 +76,12 @@ public class wsContoller {
 		 return   bapampaInterface.findUtilisateurMobile(id);
 	 }
 	 
+	 @RequestMapping(value="/findAllRegion",method=RequestMethod.GET)
+	 public ArrayList<Region> findAllRegion()
+	 {
+		 return   tixInterface.findAllRegion();
+	 }
+	 
 	 @RequestMapping(value="/signialement",method=RequestMethod.GET)
 	 public ArrayList<Signalement> ListSignalementRegion()
 	 {
