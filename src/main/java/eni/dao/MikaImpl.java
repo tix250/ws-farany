@@ -48,10 +48,11 @@ public class MikaImpl implements MikaInterface{
 		}
 	
 	@Override
-	public void affecterSignalement(Signalement s) {
+	public boolean affecterSignalement(Signalement s) {
 		Signalement ssd = null;
+		boolean retour = false;
 		try {
-			Query req = em.createQuery("FROM Signalement where id_signalement = " + s.getId_signalement() )  ;
+			Query req = em.createQuery("SELECT a FROM Signalement  a where a.id_signalement = " + s.getId_signalement() )  ;
 			ssd = (Signalement) req.getSingleResult();
 			
 		}catch (Exception e ) {
@@ -60,9 +61,11 @@ public class MikaImpl implements MikaInterface{
 		
 		if(ssd != null)
 		{
+			retour = true;
 			ssd.setId_region(s.getId_region());
 			em.merge(ssd);
 		}
+		return retour;
 	}
 	@SuppressWarnings("unchecked")
 	@Override

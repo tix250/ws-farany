@@ -13,7 +13,7 @@ public interface MikaInterface {
 	public void insertUserBo(UtilisateurBO u );
 	public List<Region> listeRegion();
 	public List<Signalement> listeSignalement();
-	public void affecterSignalement(Signalement s);
+	public boolean affecterSignalement(Signalement s);
 	public List<Signalement> listeSignalementAffecter();
 	public String typeSignalement(int idTypesignalement);
 

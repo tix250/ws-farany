@@ -135,9 +135,11 @@ public class wsContoller {
 	 @RequestMapping(value="/affecterSignalement",method=RequestMethod.POST)
 	 public boolean affecterSignalement (@RequestBody  Signalement s )
 	 {
-		 
-		 mikaInterface.affecterSignalement(s);
-		 return true;
+		 if(mikaInterface.affecterSignalement(s))
+		 {
+			 return true;
+		 }
+		 else return false;
 	 }
 	 
 	 @RequestMapping(value="/inscriptionMobile",method=RequestMethod.POST)
