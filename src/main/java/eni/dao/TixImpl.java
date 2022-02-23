@@ -130,5 +130,11 @@ public class TixImpl implements TixInterface {
 	}
 		return regionLsit;
 	}
+
+	@Override
+	public boolean insertRegion(Region r) {
+		em.persist(r);
+		return true;
+	}
 	
 }

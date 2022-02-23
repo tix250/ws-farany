@@ -172,6 +172,12 @@ public class wsContoller {
 		 return true;
 	 }
 	 
+	 @RequestMapping(value="/insertRegion",method=RequestMethod.POST)
+	 public boolean insertRegion (@RequestBody Region r )
+	 {
+		return tixInterface.insertRegion(r);
+	 }
+	 
 	 @Value("${file.upload-dir}")
 	 String FILE_DIRECTORY;
 	 

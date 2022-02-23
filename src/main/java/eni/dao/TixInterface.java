@@ -16,4 +16,5 @@ public interface TixInterface {
 	public ArrayList<Signalement> recupererToutSignialement();
 	public ArrayList<StatSignialement> donnerStatRegionSignialement();
 	public ArrayList<Region> findAllRegion();
+	public boolean  insertRegion(Region r);
 }
