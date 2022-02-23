@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import eni.entities.Region;
 import eni.entities.Signalement;
 import eni.entities.UtilisateurBO;
+import eni.entities.UtilisateurMobile;
 import eni.repository.MikaRepository;
 import eni.repository.SignalementRepository;
 
@@ -49,18 +50,17 @@ public class MikaImpl implements MikaInterface{
 	
 	@Override
 	public void affecterSignalement(Signalement s) {
-		
+		Signalement ssd = new Signalement();
 		try {
-			
-			Query req = em.createQuery("update Signalement s set s.statut=2,s.id_region=:idRegion where s.id_signalement=:idSignalement" )  ;
-			req.setParameter("idSignalement",s.getId_signalement());
-			req.setParameter("idRegion",s.getId_region());
-			req.executeUpdate();
+			Query req = em.createQuery("FROM Signalement where id_signalement = " + s.getId_signalement() )  ;
+			ssd = (Signalement) req.getSingleResult();
 			
 		}catch (Exception e ) {
 			e.printStackTrace();		
 		}
 		
+		ssd.setId_region(s.getId_region());
+		em.merge(ssd);
 	}
 	@SuppressWarnings("unchecked")
 	@Override
