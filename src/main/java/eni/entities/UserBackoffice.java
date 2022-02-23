@@ -14,7 +14,7 @@ public class UserBackoffice implements Serializable {
 
 	   
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idBackoffice;
 	private String nom;
 	private String prenom;

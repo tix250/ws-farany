@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class TypeSignalement implements Serializable {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idTypesignalement;
 	private String typesignalement;
 	private static final long serialVersionUID = 1L;

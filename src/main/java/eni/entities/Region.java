@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Region implements Serializable {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id_region;
 	private String nom_region;
 	private static final long serialVersionUID = 1L;

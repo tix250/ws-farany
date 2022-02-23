@@ -12,7 +12,7 @@ import javax.persistence.*;
 
 public class UtilisateurMobile implements Serializable {
 	
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id_user;
 	private String nom;
 	private String prenom;

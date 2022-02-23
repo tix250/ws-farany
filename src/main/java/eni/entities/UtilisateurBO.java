@@ -14,7 +14,7 @@ public class UtilisateurBO implements Serializable {
 
 	   
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idBO;
 	private String login;
 	private String nom;

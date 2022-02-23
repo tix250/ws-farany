@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class UtilisateurFO implements Serializable {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idFO;
 	private String nom;
 	private String prenom;

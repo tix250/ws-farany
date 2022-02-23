@@ -15,7 +15,7 @@ public class Signalement implements Serializable {
 
 	   
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id_signalement;
 	private int id_user;
 	private int id_region;

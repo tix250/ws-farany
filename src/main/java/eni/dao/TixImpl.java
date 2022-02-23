@@ -9,11 +9,13 @@ import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import eni.entities.Region;
 import eni.entities.Signalement;
 import eni.entities.StatSignialement;
 import eni.entities.UtilisateurMobile;
+import eni.repository.RegionRepository;
 import eni.repository.SignalementRepository;
 import eni.repository.UserRepository;
 
@@ -41,6 +43,9 @@ public class TixImpl implements TixInterface {
 	
 	@Autowired
 	private UserRepository ur;
+	
+	@Autowired
+	private RegionRepository rr;
 	
 	@Override
 	public boolean InscriptionMobile(UtilisateurMobile user) {
@@ -119,7 +124,7 @@ public class TixImpl implements TixInterface {
 	ArrayList<Region>  regionLsit = new ArrayList<>();
 	try 
 	{
-		Query  req = em.createQuery("SELECT * FORM Region");
+		Query  req = em.createQuery("SELECT a FROM Region a");
 		regionLsit = (ArrayList<Region>) req.getResultList();
 	} catch (Exception e) 
 	{
@@ -133,7 +138,7 @@ public class TixImpl implements TixInterface {
 
 	@Override
 	public boolean insertRegion(Region r) {
-		em.persist(r);
+		rr.save(r);
 		return true;
 	}
 	
