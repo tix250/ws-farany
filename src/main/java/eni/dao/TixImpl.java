@@ -106,7 +106,7 @@ public class TixImpl implements TixInterface {
 		StatSignialement st = new StatSignialement();
 		try 
 		{
-			Query  req = em.createQuery("SELECT id_region AS idRegion , COUNT(id_signalement ) AS nbrSignalement FROM signalement GROUP BY id_region ORDER BY isany ASC");
+			Query  req = em.createQuery("SELECT id_region AS idRegion , COUNT(id_signalement ) AS nbrSignalement FROM signalement GROUP BY id_region ORDER BY nbrSignalement ASC");
 			st = (StatSignialement) req.getSingleResult();
 		} catch (Exception e) 
 		{

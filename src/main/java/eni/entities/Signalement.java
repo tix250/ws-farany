@@ -20,6 +20,7 @@ public class Signalement implements Serializable {
 	private int id_user;
 	private int id_region;
 	private Date date;
+	private String nom_signalement;
 	private String description;
 	private int statut;
 	private int id_type_signalement;
@@ -93,5 +94,13 @@ public class Signalement implements Serializable {
 	public void setCoordonnee(String coordonnee) {
 		this.coordonnee = coordonnee;
 	}
+	public String getNom_signalement() {
+		return nom_signalement;
+	}
+	public void setNom_signalement(String nom_signalement) {
+		this.nom_signalement = nom_signalement;
+	}
+	
+	
    
 }

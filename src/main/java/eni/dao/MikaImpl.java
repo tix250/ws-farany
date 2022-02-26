@@ -63,6 +63,7 @@ public class MikaImpl implements MikaInterface{
 		{
 			retour = true;
 			ssd.setId_region(s.getId_region());
+			ssd.setStatut(2);
 			em.merge(ssd);
 		}
 		return retour;

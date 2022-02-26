@@ -186,7 +186,8 @@ public class wsContoller {
 			 @RequestParam("file") MultipartFile file ,
 			 @RequestParam("id_user") String id_user ,
 			 @RequestParam("description") String description,
-			 @RequestParam("id_type_signalement") String id_type_signalement
+			 @RequestParam("id_type_signalement") String id_type_signalement,
+			 @RequestParam("nom_signalement") String nom_signalement
 			 ) throws IOException
 	 { 
 		 File myFile = new File(FILE_DIRECTORY+file.getOriginalFilename());
@@ -196,7 +197,9 @@ public class wsContoller {
 		 fos.close();
 		 
 		 Signalement s = new Signalement();
+		 s.setStatut(1);
 		 s.setDate(new Date());
+		 s.setNom_signalement(nom_signalement);
 		 s.setCoordonnee("ok");
 		 s.setDescription(description);
 		 s.setId_user(Integer.valueOf(id_user));
