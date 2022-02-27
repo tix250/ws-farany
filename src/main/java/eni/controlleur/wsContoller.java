@@ -56,9 +56,9 @@ public class wsContoller {
 	 }
 	 
 	 @RequestMapping(value="/ListSignalementRegion/{id}",method=RequestMethod.GET)
-	 public ArrayList<Signalement> recupererSignialement(@PathVariable int id)
+	 public ArrayList<Signalement> recupererSignialement(@PathVariable int idRegion ,  @PathVariable int numeroPage , @PathVariable int  nbrElementParPage )
 	 {
-		 return  (ArrayList<Signalement>) bapampaInterface.ListSignalementRegion(id);
+		 return  (ArrayList<Signalement>) bapampaInterface.ListSignalementRegion(idRegion, numeroPage, nbrElementParPage);
 	 }
 	 
 	 @RequestMapping(value="/donnerStatRegionSignialement",method=RequestMethod.GET)

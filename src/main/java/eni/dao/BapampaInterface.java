@@ -13,7 +13,7 @@ import eni.entities.UtilisateurMobile;
 public interface BapampaInterface {
 	public UtilisateurFO connexionFO(String login ,String mdp ) ;
 	public void insertUserFo (UtilisateurFO u);
-	public List<Signalement> ListSignalementRegion (int idRegion); 
+	public List<Signalement> ListSignalementRegion (int idRegion , int numeroPage , int nbrElementParPage); 
 	public Region findRegion (int id_region);
 	public UtilisateurMobile findUtilisateurMobile (int id_user);
 	

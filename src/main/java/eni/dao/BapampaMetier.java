@@ -51,11 +51,13 @@ public class BapampaMetier implements BapampaInterface{
 	}
 
 	@Override
-	public List<Signalement> ListSignalementRegion( int idRegion) {
+	public List<Signalement> ListSignalementRegion( int idRegion , int numeroPage , int nbrElementParPage) {
 		List<Signalement> allSignalement = new ArrayList<Signalement>();
 		try {
 			
-			Query  req = em.createQuery("from Signalement where id_region=:idRegion and statut = 2");
+			Query  req = em.createQuery("from Signalement where id_region=:idRegion and statut=2");
+			req.setFirstResult((numeroPage * nbrElementParPage) - nbrElementParPage);
+			req.setMaxResults((numeroPage * nbrElementParPage ));
 			req.setParameter("idRegion", idRegion);
 			allSignalement = (List<Signalement>) req.getResultList();
 			
