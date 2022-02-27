@@ -3,8 +3,10 @@ package eni.controlleur;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +27,7 @@ import eni.dao.TixInterface;
 import eni.entities.Region;
 import eni.entities.Signalement;
 import eni.entities.StatSignialement;
+import eni.entities.TypeSignalement;
 import eni.entities.UserBackoffice;
 import eni.entities.UtilisateurBO;
 import eni.entities.UtilisateurFO;
@@ -102,6 +105,36 @@ public class wsContoller {
 		um.setMdp(mdp);
 		return tixInterface.loginMobile(nom , mdp);
 	}
+	
+	@RequestMapping(value="/terminerSignalement",method=RequestMethod.GET)
+	public void terminerSignalement (@PathVariable int idSignalement)
+	{
+		bapampaInterface.terminerSignalement(idSignalement);
+	}
+	
+	@RequestMapping(value="/nbrPageSignalement",method=RequestMethod.GET)
+	public int nbrPageSignalement (@PathVariable int id_region  , @PathVariable int elementParPage)
+	{
+		return bapampaInterface.nbrPageSignalement(id_region, elementParPage);
+	}
+	
+	@RequestMapping(value="/ListAllTypeSignalement",method=RequestMethod.GET)
+	public List<TypeSignalement> ListAllTypeSignalement ()
+	{
+		return bapampaInterface.ListAllTypeSignalement();
+	}
+	
+	@RequestMapping(value="/detailSignalement",method=RequestMethod.GET)
+	public Signalement detailSignalement (@PathVariable int idSignalement)
+	{
+		return bapampaInterface.detailSignalement(idSignalement);
+	}
+	
+	@RequestMapping(value="/getTypeSignalement",method=RequestMethod.GET)
+	public TypeSignalement getTypeSignalement (@PathVariable int idTypeSignalement)
+	{
+		return bapampaInterface.getTypeSignalement(idTypeSignalement);
+	}
 	 
 	 @RequestMapping(value="/loginMobile",method=RequestMethod.POST)
 	 public UtilisateurMobile loginBO (@RequestBody UtilisateurMobile umobile )
@@ -124,6 +157,23 @@ public class wsContoller {
 		}
 		else
 			return null;
+	 }
+	 
+	 @RequestMapping(value="/rechercheSimple",method=RequestMethod.POST)
+	 public List<Signalement> rechercheSimple (@PathVariable String nomSignalement, @PathVariable int idRegion )
+	 {
+		return bapampaInterface.rechercheSimple(nomSignalement, idRegion);
+	 }
+	 
+	 @RequestMapping(value="/rechercheAvancer",method=RequestMethod.POST)
+	 public List<Signalement> rechercheAvancer (@PathVariable int idRegion, @PathVariable String d , @PathVariable int idTypeSignalemet ,  @PathVariable int status ,@PathVariable String nomSignalement )
+	 {
+		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+		  //convert String to LocalDate
+		  java.time.LocalDate localDate = java.time.LocalDate.parse(d, formatter);
+		  java.util.Date date = java.sql.Date.valueOf(localDate);
+		 
+		return bapampaInterface.rechercheAvancer(idRegion, date, idTypeSignalemet, status, nomSignalement);
 	 }
 	 
 	 @RequestMapping(value="/loginFo",method=RequestMethod.POST)
