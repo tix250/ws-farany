@@ -106,13 +106,13 @@ public class wsContoller {
 		return tixInterface.loginMobile(nom , mdp);
 	}
 	
-	@RequestMapping(value="/terminerSignalement",method=RequestMethod.GET)
+	@RequestMapping(value="/terminerSignalement/{idSignalement}",method=RequestMethod.GET)
 	public void terminerSignalement (@PathVariable int idSignalement)
 	{
 		bapampaInterface.terminerSignalement(idSignalement);
 	}
 	
-	@RequestMapping(value="/nbrPageSignalement",method=RequestMethod.GET)
+	@RequestMapping(value="/nbrPageSignalement/{id_region}/{elementParPage}",method=RequestMethod.GET)
 	public int nbrPageSignalement (@PathVariable int id_region  , @PathVariable int elementParPage)
 	{
 		return bapampaInterface.nbrPageSignalement(id_region, elementParPage);
@@ -124,13 +124,13 @@ public class wsContoller {
 		return bapampaInterface.ListAllTypeSignalement();
 	}
 	
-	@RequestMapping(value="/detailSignalement",method=RequestMethod.GET)
+	@RequestMapping(value="/detailSignalement/{idSignalement}",method=RequestMethod.GET)
 	public Signalement detailSignalement (@PathVariable int idSignalement)
 	{
 		return bapampaInterface.detailSignalement(idSignalement);
 	}
 	
-	@RequestMapping(value="/getTypeSignalement",method=RequestMethod.GET)
+	@RequestMapping(value="/getTypeSignalement/{idTypeSignalement}",method=RequestMethod.GET)
 	public TypeSignalement getTypeSignalement (@PathVariable int idTypeSignalement)
 	{
 		return bapampaInterface.getTypeSignalement(idTypeSignalement);
