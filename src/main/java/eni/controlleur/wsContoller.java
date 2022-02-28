@@ -55,7 +55,7 @@ public class wsContoller {
 		 return  (ArrayList<UtilisateurMobile>) tixInterface.getAllUserMobile();
 	 }
 	 
-	 @RequestMapping(value="/ListSignalementRegion/{id}",method=RequestMethod.GET)
+	 @RequestMapping(value="/ListSignalementRegion/{idRegion}/{numeroPage}/{nbrElementParPage}",method=RequestMethod.GET)
 	 public ArrayList<Signalement> recupererSignialement(@PathVariable int idRegion ,  @PathVariable int numeroPage , @PathVariable int  nbrElementParPage )
 	 {
 		 return  (ArrayList<Signalement>) bapampaInterface.ListSignalementRegion(idRegion, numeroPage, nbrElementParPage);
