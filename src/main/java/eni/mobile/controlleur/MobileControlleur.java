@@ -9,6 +9,8 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,6 +48,30 @@ public class MobileControlleur {
 		return "viewmobile";
 	}
 	
+	@RequestMapping(value="/loginMobile")
+	public String loginMobile(Model model)
+	{
+		//List<Region> listeRegion = region.findAll();
+		List<Region> listeRegion = metier.findAllRegion();
+		model.addAttribute("listeRegion" , listeRegion);
+		return "login";
+	}
+	
+	@PostMapping(value="/checkLoginMobile")
+	public String checkLoginMobile(
+			@RequestParam("email") String email , 
+			@RequestParam("mdp") String mdp , 
+			HttpSession session)
+	{
+		if(metier.loginMobile(email, mdp)!=null)
+		{
+			session.setAttribute("id", metier.loginMobile(email, mdp).getId_user());
+			return "viewmobile";
+		}
+		else
+			return "login";
+	}
+	
 	@PostMapping("/test")
 	@ResponseBody
 	public String submitForm(
@@ -64,11 +90,10 @@ public class MobileControlleur {
 		s.setStatut(1);
 		s.setId_region(0);
 		
-		
 		Path path = Paths.get("uplods/");
 		try {
 			InputStream inputStream = image.getInputStream();
-			Files.copy(inputStream, path.resolve(image.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
+			Files.copy(inputStream , path.resolve(image.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
 			s.setPhoto(image.getOriginalFilename().toLowerCase());
 		} catch (Exception e) {
 			// TODO: handle exception
